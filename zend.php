@@ -8,6 +8,11 @@ if (!defined("WHMCS")) die("This file cannot be accessed directly");
 
 
 
+/**
+ * Here we configure the parameters for the module
+ * that need to filled from the WHMCS administration
+ * area.
+ */
 function zend_config() {
 	return [
 		"name"          => "Zend",
