@@ -1,0 +1,24 @@
+{
+	"schema": "1.0.0",
+	"type": "whmcs-addons",
+	"name": "zend",
+	"license": "proprietary",
+	"category": "notifications",
+	"description": {
+		"name": "Zend",
+		"tagline": "Send notification to your customers with ease.",
+		"long": "Zend support multiple types of notification channels to connect with your customer including SMS, Flash messages, etc.\n\nThis will make your order, ticket flow much more easier for your clients and administration."
+	},
+	"logo": {
+		"filename": "logo.png"
+	},
+	"support": {
+		"docs_url": "https:\/\/zend.lk\/support"
+	},
+	"authors": [
+		{
+			"name": "Avanciro (PVT) LTD",
+			"homepage": "https:\/\/avanciro.com\/"
+		}
+	]
+}
