@@ -6,6 +6,8 @@
  */
 if (!defined("WHMCS")) die("This file cannot be accessed directly");
 
+
+
 function zend_config() {
 	return [
 		"name"          => "Zend",
@@ -31,17 +33,41 @@ function zend_config() {
 	];
 }
 
+
+
+/**
+ * This method is invoked in the event of installation
+ * of this module in the WHMCS system. We can use this
+ * to bootstrap module and migrate any database schemas.
+ */
 function zend_activate() {
 	return [
 		"status" => "success",
 		"description" => "Zend module successfully activated"
 	];
 }
+
+
+
+/**
+ * This method will invoked in an event of module deactivation
+ * from the WHMCS system. We can use this to de-initialize
+ * things from the WHMCS system.
+ */
 function zend_deactivate() {
 	return [
 		"status" => "success",
 		"description" => "Zend module successfully deactivated"
 	];
+}
+
+
+function zend_output($vars) {
+
+	echo "<pre>";
+		var_dump( $vars );
+	echo "</pre>";
+
 }
 
 ?>
