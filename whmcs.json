@@ -6,7 +6,7 @@
 	"category": "notifications",
 	"description": {
 		"name": "Zend",
-		"tagline": "Send notification to your customers with ease.",
+		"tagline": "Send notification to your customers with ease",
 		"long": "Zend support multiple types of notification channels to connect with your customer including SMS, Flash messages, etc.\n\nThis will make your order, ticket flow much more easier for your clients and administration."
 	},
 	"logo": {
