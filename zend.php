@@ -12,12 +12,26 @@ function zend_config() {
 		"description"   => "Send notification to your customers with ease",
 		"author"		=> "Avanciro (PVT) LTD",
 		"version"		=> "1.0.0",
-		"language"		=> "english"
+		"language"		=> "english",
+		"fields"		=> [
+			"api_key"			=> [
+				"FriendlyName"	=> "API Key",
+				"Type"			=> "text"
+			],
+			"api_secret"		=> [
+				"FriendlyName"	=> "API Secret",
+				"Type"			=> "text"
+			],
+			"sender_id"			=> [
+				"FriendlyName"	=> "Sender ID",
+				"Type"			=> "text",
+				"Default"		=> "Zend"
+			]
+		]
 	];
 }
 
 function zend_activate() {}
 function zend_deactivate() {}
-function zend_upgrade() {}
 
 ?>
