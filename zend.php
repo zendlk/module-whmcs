@@ -31,7 +31,17 @@ function zend_config() {
 	];
 }
 
-function zend_activate() {}
-function zend_deactivate() {}
+function zend_activate() {
+	return [
+		"status" => "success",
+		"description" => "Zend module successfully activated"
+	];
+}
+function zend_deactivate() {
+	return [
+		"status" => "success",
+		"description" => "Zend module successfully deactivated"
+	];
+}
 
 ?>
