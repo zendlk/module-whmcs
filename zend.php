@@ -86,10 +86,8 @@ function zend_activate() {
 		 * the template schema. Administrator need to have
 		 * some predefined templates to work with.
 		 */
-		Capsule::table('mod_zend_templates')->insert([
-			"name"		=> "On_Register",
-			"type"		=> "client",
-			"message"	=> "Hi {firstname}, Welcome to our website."
+		Capsule::table('mod_zend_templates')->insert([ "name" => "On_Register", "type" => "client",
+			"message" => "Hi {firstname}, Welcome to our website."
 		]);
 
 		return [
