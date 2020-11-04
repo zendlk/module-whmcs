@@ -1,6 +1,6 @@
 <?php
 
-// include_once "module/Dispatcher.php";
+include_once "templates/Dashboard.php";
 use WHMCS\Database\Capsule;
 
 /**
@@ -24,18 +24,14 @@ function zend_config() {
 		"version"		=> "1.0.0",
 		"language"		=> "english",
 		"fields"		=> [
-			"api_key"			=> [
-				"FriendlyName"	=> "API Key",
-				"Type"			=> "text"
-			],
 			"api_secret"		=> [
-				"FriendlyName"	=> "API Secret",
+				"FriendlyName"	=> "API Token",
 				"Type"			=> "text"
 			],
 			"sender_id"			=> [
 				"FriendlyName"	=> "Sender ID",
 				"Type"			=> "text",
-				"Default"		=> "Zend"
+				"Default"		=> "DEMO"
 			]
 		]
 	];
@@ -86,8 +82,16 @@ function zend_activate() {
 		 * the template schema. Administrator need to have
 		 * some predefined templates to work with.
 		 */
-		Capsule::table('mod_zend_templates')->insert([ "name" => "On_Register", "type" => "client",
+		Capsule::table('mod_zend_templates')->insert([
+			"name" => "On_Register",
+			"type" => "client",
 			"message" => "Hi {firstname}, Welcome to our website."
+		]);
+
+		Capsule::table('mod_zend_templates')->insert([
+			"name" => "On_NewInvoice",
+			"type" => "invoice",
+			"message" => "Hi {firstname}, You have new invoice generated with id {invoice_id}. The last day of payment is {due_date}. Kindly pay your bill before due date to use services without interruption."
 		]);
 
 		return [
@@ -134,26 +138,16 @@ function zend_deactivate() {
 }
 
 
-
+/**
+ * Identify the requested tab and dispatch the request
+ * according to the tab controller. A simple routing
+ * mechanisam that helps to load relevent controller
+ * method.
+ */
 function zend_output($vars) {
-
-	/**
-	 * Identify the requested tab and dispatch the request
-	 * according to the tab controller.
-	 */
-	// Dispatcher::test("|test");
-
-
-	echo "<pre>";
-		var_dump( $vars );
-		var_dump( $_REQUEST['tab'] );
-	echo "</pre>";
-
-	// $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
-	// $dispatcher = new AdminDispatcher();
-	// $response = $dispatcher->dispatch($action, $vars);
-	// echo $response;
-
+	$Dashboard = new Dashboard();
+	$tab = (isset($_REQUEST['tab'])) ? $_REQUEST['tab'] : 'overview';
+	$Dashboard->$tab($vars);
 }
 
 ?>

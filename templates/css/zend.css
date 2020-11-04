@@ -1,0 +1,8 @@
+table.table-zend > thead > tr > th {
+    background-color: #eeeeee;
+    vertical-align: middle;
+}
+
+table.table-zend > thead > tr > td {
+    vertical-align: middle;
+}
