@@ -24,7 +24,7 @@ function zend_config() {
 		"version"		=> "1.0.0",
 		"language"		=> "english",
 		"fields"		=> [
-			"api_secret"		=> [
+			"api_token"			=> [
 				"FriendlyName"	=> "API Token",
 				"Type"			=> "text"
 			],
