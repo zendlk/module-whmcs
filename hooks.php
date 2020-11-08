@@ -7,7 +7,7 @@ if (!defined("WHMCS")) die("This file cannot be accessed directly");
  * event happend from action hook.
  */
 include_once dirname(__FILE__)."/libs/zendlk/php-sdk/support/Config.php";
-include_once dirname(__FILE__)."/libs/zendlk/php-sdk/api/SMS/Messages.php";
+include_once dirname(__FILE__)."/libs/zendlk/php-sdk/api/SMS/Message.php";
 
 
 /**
