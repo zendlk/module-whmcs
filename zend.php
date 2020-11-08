@@ -53,25 +53,14 @@ function zend_activate() {
 		 * activation method. Followings are the schemas
 		 * created during this activation process.
 		 *
-		 *    - mod_zend_history
 		 *    - mod_zend_templates
 		 *
 		 */
 		Capsule::schema()->create(
-			'mod_zend_history',
-			function($schema) {
-				$schema->increments('id');
-				$schema->integer('client_id');
-				$schema->integer('phone');
-			}
-		);
-
-		Capsule::schema()->create(
 			'mod_zend_templates',
 			function($schema) {
 				$schema->increments('id');
-				$schema->string('name');
-				$schema->enum('type', ['admin', 'client', 'invoice', 'ticket']);
+				$schema->string('hook');
 				$schema->text('message');
 				$schema->boolean('is_active');
 			}
@@ -83,14 +72,7 @@ function zend_activate() {
 		 * some predefined templates to work with.
 		 */
 		Capsule::table('mod_zend_templates')->insert([
-			"name" => "On_Register",
-			"type" => "client",
-			"message" => "Hi {firstname}, Welcome to our website."
-		]);
-
-		Capsule::table('mod_zend_templates')->insert([
-			"name" => "On_NewInvoice",
-			"type" => "invoice",
+			"hook" => "InvoiceCreated",
 			"message" => "Hi {firstname}, You have new invoice generated with id {invoice_id}. The last day of payment is {due_date}. Kindly pay your bill before due date to use services without interruption."
 		]);
 
@@ -120,7 +102,6 @@ function zend_deactivate() {
 
 	try {
 
-		Capsule::schema()->dropIfExists('mod_zend_history');
 		Capsule::schema()->dropIfExists('mod_zend_templates');
 
 		return [
