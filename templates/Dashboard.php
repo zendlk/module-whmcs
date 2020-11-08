@@ -33,10 +33,17 @@ class Dashboard {
                 echo "</tr>";
             echo "</thead>";
             echo "<tbody>";
-                foreach ( Capsule::table('mod_zend_templates')->get() as $template ):
+                foreach ( Capsule::table('mod_zend_templates')->where("type", "client")->get() as $template ):
                 echo "<tr>";
                     echo "<td class='text-center'>".$template->hook."</td>";
-                    echo "<td class='text-center'><textarea id='message-".$template->id."' class='form-control' rows='3'>".$template->message."</textarea></td>";
+                    echo "<td class='text-center'>";
+                        echo "<textarea id='message-".$template->id."' class='form-control' rows='3'>".$template->message."</textarea>";
+                        echo "<div class='text-left' style='margin-top: 4px;'>";
+                        foreach ( explode(",", $template->parameters) as $parameter ):
+                            echo "<div class='badge' style='background-color: #337ab7; padding: 4px 8px;'>".$parameter."</div>&nbsp;&nbsp;";
+                        endforeach;
+                        echo "</div>";
+                    echo "</td>";
                     echo "<td class='text-center'>";
                         if ( $template->is_active ):
                         echo "<input id='is-active-".$template->id."' type='checkbox' class='form-check-input' checked />";
