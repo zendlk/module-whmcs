@@ -60,7 +60,9 @@ function zend_activate() {
 			'mod_zend_templates',
 			function($schema) {
 				$schema->increments('id');
+				$schema->enum('type', ['admin', 'client']);
 				$schema->string('hook');
+				$schema->string('parameters');
 				$schema->text('message');
 				$schema->boolean('is_active');
 			}
@@ -72,8 +74,10 @@ function zend_activate() {
 		 * some predefined templates to work with.
 		 */
 		Capsule::table('mod_zend_templates')->insert([
-			"hook" => "InvoiceCreated",
-			"message" => "Hi {firstname}, You have new invoice generated with id {invoice_id}. The last day of payment is {due_date}. Kindly pay your bill before due date to use services without interruption."
+			"hook"			=> "InvoiceCreated",
+			"type"			=> "client",
+			"parameters"	=> "{first_name}, {last_name}, {invoice_id}, {due_date}, {subtotal}",
+			"message"		=> "Hi {firstname}, You have new invoice generated with id {invoice_id}. The last day of payment is {due_date}. Kindly pay your bill before due date to use services without interruption."
 		]);
 
 		return [
