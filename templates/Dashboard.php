@@ -26,8 +26,7 @@ class Dashboard {
         echo "<table class='table table-bordered table-zend'>";
             echo "<thead>";
                 echo "<tr>";
-                    echo "<th width='15%' class='align-middle text-center'>Name</th>";
-                    echo "<th width='15%' class='align-middle text-center'>Type</th>";
+                    echo "<th width='15%' class='align-middle text-center'>Hook</th>";
                     echo "<th class='align-middle text-center'>Message</th>";
                     echo "<th width='10%' class='align-middle text-center'>Active</th>";
                     echo "<th width='10%' class='align-middle text-center'></th>";
@@ -36,8 +35,7 @@ class Dashboard {
             echo "<tbody>";
                 foreach ( Capsule::table('mod_zend_templates')->get() as $template ):
                 echo "<tr>";
-                    echo "<td class='text-center'>".$template->name."</td>";
-                    echo "<td class='text-center'>".$template->type."</td>";
+                    echo "<td class='text-center'>".$template->hook."</td>";
                     echo "<td class='text-center'><textarea id='message-".$template->id."' class='form-control' rows='3'>".$template->message."</textarea></td>";
                     echo "<td class='text-center'>";
                         if ( $template->is_active ):
