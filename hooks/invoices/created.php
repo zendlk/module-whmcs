@@ -14,7 +14,7 @@ add_hook('InvoiceCreated', 1, function($params) {
 	 * Target: Client
 	 *
 	 */
-	$Template = Capsule::table("mod_zend_templates")->where([ ["name", "On_NewInvoice"], ["type", "invoice"] ])->first();
+	$Template = Capsule::table("mod_zend_templates")->where("hook", "InvoiceCreated")->first();
 	if ( $Template->is_active ):
 
 		$Invoice = Capsule::table("tblinvoices")->where("id", $params["invoiceid"])->first();
