@@ -21,10 +21,9 @@ add_hook('InvoiceCreated', 1, function($params) {
 		 * We need a new instance of Zend configuration to
 		 * continue sending SMS notifications to user.
 		 */
-		$Config = new Zend_Config([
-			"token"     => Capsule::table('tbladdonmodules')->select('value')->where('module', 'zend')->where('setting', 'api_token')->first()->value,
-			"sender"	=> Capsule::table('tbladdonmodules')->select('value')->where('module', 'zend')->where('setting', 'sender_id')->first()->value,
-			"version"	=> "1.0",
+		$Config = Config::create([
+			"token"		=> Capsule::table('tbladdonmodules')->select('value')->where('module', 'zend')->where('setting', 'api_token')->first()->value,
+			"sender"	=> Capsule::table('tbladdonmodules')->select('value')->where('module', 'zend')->where('setting', 'sender_id')->first()->value
 		]);
 
 		$Invoice = Capsule::table("tblinvoices")->where("id", $params["invoiceid"])->first();
