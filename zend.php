@@ -77,7 +77,21 @@ function zend_activate() {
 			"hook"			=> "InvoiceCreated",
 			"type"			=> "client",
 			"parameters"	=> "{first_name}, {last_name}, {invoice_id}, {due_date}, {subtotal}",
-			"message"		=> "Hi {firstname}, You have new invoice generated with id {invoice_id}. The last day of payment is {due_date}. Kindly pay your bill before due date to use services without interruption."
+			"message"		=> "Hi {firstname}, You have new invoice generated with id #{invoice_id}. The last day of payment is {due_date}. Kindly pay your bill before due date to use services without interruption."
+		]);
+
+		Capsule::table('mod_zend_templates')->insert([
+			"hook"			=> "TicketOpen",
+			"type"			=> "client",
+			"parameters"	=> "{first_name}, {ticket_number}",
+			"message"		=> "Hi {first_name}, The ticket with the ticket number #{ticket_number} has been successfully opened."
+		]);
+
+		Capsule::table('mod_zend_templates')->insert([
+			"hook"			=> "TicketClose",
+			"type"			=> "client",
+			"parameters"	=> "{first_name}, {ticket_number}",
+			"message"		=> "Hi {first_name}, The ticket with the ticket number #{ticket_number} has been successfully close. In case of any issue, kindly contact us."
 		]);
 
 		return [
