@@ -18,7 +18,6 @@ add_hook("TicketOpen", 1, function($params) {
 	if ( $Template->is_active ):
 
 		$Client = Capsule::table("tblclients")->where("id", $params["userid"])->first();
-		$Ticket = Capsule::table("tbltickets")->where("id", $params["ticketid"])->first();
 
 		/**
 		 * We need to format the phone number of the client to the
@@ -35,7 +34,7 @@ add_hook("TicketOpen", 1, function($params) {
 			$template_parts = [
 				"{first_name}"		=> $Client->firstname,
 				"{last_name}"		=> $Client->lastname,
-				"{ticket_number}"	=> $Ticket->ticketmask
+				"{ticket_number}"	=> $params["ticketmask"]
 			];
 			$Text = str_replace(array_keys($template_parts), $template_parts, $Template->message);
 
