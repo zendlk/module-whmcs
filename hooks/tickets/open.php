@@ -1,8 +1,8 @@
 <?php
 
 use WHMCS\Database\Capsule;
+use Zend\API\SMS\Message;
 use Zend\Support\Config as Zend_Config;
-use Zend\API\Messages as Message;
 
 /**
  * This hook is responsible for sending out notifications
