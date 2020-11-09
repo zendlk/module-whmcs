@@ -83,14 +83,14 @@ function zend_activate() {
 		Capsule::table('mod_zend_templates')->insert([
 			"hook"			=> "TicketOpen",
 			"type"			=> "client",
-			"parameters"	=> "{first_name}, {ticket_number}",
+			"parameters"	=> "{first_name}, {last_name}, {ticket_number}",
 			"message"		=> "Hi {first_name}, The ticket with the ticket number #{ticket_number} has been successfully opened."
 		]);
 
 		Capsule::table('mod_zend_templates')->insert([
 			"hook"			=> "TicketClose",
 			"type"			=> "client",
-			"parameters"	=> "{first_name}, {ticket_number}",
+			"parameters"	=> "{first_name}, {last_name}, {ticket_number}",
 			"message"		=> "Hi {first_name}, The ticket with the ticket number #{ticket_number} has been successfully close. In case of any issue, kindly contact us."
 		]);
 
