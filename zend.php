@@ -108,6 +108,13 @@ function zend_activate() {
 			"message"		=> "Hi {first_name} {last_name}, Welcome to our website."
 		]);
 
+		Capsule::table('mod_zend_templates')->insert([
+			"hook"			=> "ClientChangePassword",
+			"type"			=> "client",
+			"parameters"	=> "{first_name}, {last_name}",
+			"message"		=> "Hi {first_name}, Your password has been changed."
+		]);
+
 		return [
 			"status" => "success",
 			"description" => "Zend module successfully activated"
