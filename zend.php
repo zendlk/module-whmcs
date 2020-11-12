@@ -81,6 +81,13 @@ function zend_activate() {
 		]);
 
 		Capsule::table('mod_zend_templates')->insert([
+			"hook"			=> "InvoicePaid",
+			"type"			=> "client",
+			"parameters"	=> "{first_name}, {last_name}, {invoice_id}, {due_date}, {subtotal}, {currency_code}, {currency_prefix}, {currency_suffix}",
+			"message"		=> "Hi {first_name}, Your invoice #{invoice_id} marked as paid."
+		]);
+
+		Capsule::table('mod_zend_templates')->insert([
 			"hook"			=> "TicketOpen",
 			"type"			=> "client",
 			"parameters"	=> "{first_name}, {last_name}, {ticket_number}",

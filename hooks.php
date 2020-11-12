@@ -16,6 +16,7 @@ include_once dirname(__FILE__)."/libs/zendlk/php-sdk/src/api/SMS/Message.php";
  * them according to the WHMCS.
  */
 include_once dirname(__FILE__)."/hooks/invoices/created.php";
+include_once dirname(__FILE__)."/hooks/invoices/paid.php";
 include_once dirname(__FILE__)."/hooks/tickets/open.php";
 include_once dirname(__FILE__)."/hooks/tickets/close.php";
 include_once dirname(__FILE__)."/hooks/tickets/reply.php";
