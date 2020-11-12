@@ -99,7 +99,7 @@ class Dashboard {
                     echo "<td class='text-center'>".$administrator->firstname." ".$administrator->lastname."</td>";
                     echo "<td class='text-center'>".$administrator->email."</td>";
                     echo "<td class='text-center'>";
-                    echo "<input id='phone-".$administrator->id."' class='form-control' value='".$info->mobile."' />";
+                    echo "<input id='phone-".$administrator->id."' class='form-control' value='".$info->mobile."' placeholder='+94777123456' />";
                     echo "</td>";
                     echo "<td class='text-center'>";
                         if ( $info->is_active ):
