@@ -94,6 +94,13 @@ function zend_activate() {
 			"message"		=> "Hi {first_name}, The ticket with the ticket number #{ticket_number} has been successfully close. In case of any issue, kindly contact us."
 		]);
 
+		Capsule::table('mod_zend_templates')->insert([
+			"hook"			=> "TicketAdminReply",
+			"type"			=> "client",
+			"parameters"	=> "{first_name}, {last_name}, {ticket_number}, {admin_display_name}",
+			"message"		=> "Hi {first_name}, The ticket with the ticket number #{ticket_number} has been updated with new reply."
+		]);
+
 		return [
 			"status" => "success",
 			"description" => "Zend module successfully activated"
