@@ -157,6 +157,7 @@ function zend_deactivate() {
 	try {
 
 		Capsule::schema()->dropIfExists('mod_zend_templates');
+		Capsule::schema()->dropIfExists('mod_zend_admininfo');
 
 		return [
 			"status" => "success",
