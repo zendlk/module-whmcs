@@ -101,6 +101,13 @@ function zend_activate() {
 			"message"		=> "Hi {first_name}, The ticket with the ticket number #{ticket_number} has been updated with new reply."
 		]);
 
+		Capsule::table('mod_zend_templates')->insert([
+			"hook"			=> "ClientAdd",
+			"type"			=> "client",
+			"parameters"	=> "{first_name}, {last_name}, {email}",
+			"message"		=> "Hi {first_name} {last_name}, Welcome to our website."
+		]);
+
 		return [
 			"status" => "success",
 			"description" => "Zend module successfully activated"

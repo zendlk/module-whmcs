@@ -19,5 +19,6 @@ include_once dirname(__FILE__)."/hooks/invoices/created.php";
 include_once dirname(__FILE__)."/hooks/tickets/open.php";
 include_once dirname(__FILE__)."/hooks/tickets/close.php";
 include_once dirname(__FILE__)."/hooks/tickets/reply.php";
+include_once dirname(__FILE__)."/hooks/clients/add.php";
 
 ?>
