@@ -68,6 +68,14 @@ function zend_activate() {
 			}
 		);
 
+		Capsule::schema()->create(
+			'mod_zend_admininfo',
+			function($schema) {
+				$schema->integer('admin_id');
+				$schema->string('mobile');
+			}
+		);
+
 		/**
 		 * We also need to seed some important data into
 		 * the template schema. Administrator need to have
