@@ -72,7 +72,8 @@ function zend_activate() {
 			'mod_zend_admininfo',
 			function($schema) {
 				$schema->integer('admin_id');
-				$schema->string('mobile');
+				$schema->string('mobile')->nullable();
+				$schema->boolean('is_active')->default(0);
 			}
 		);
 

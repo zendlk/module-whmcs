@@ -60,7 +60,6 @@ class Dashboard {
         echo "</table>";
     }
 
-
     function ajax_template_edit() {
         header('Content-Type: application/json');
         try {
@@ -76,6 +75,72 @@ class Dashboard {
     }
 
 
+    /**
+     * This method responsible for rendering administrator
+     * information tab in the module configuration view
+     */
+    public function administrators() {
+        self::partials_tabs();
+
+        echo "<table class='table table-bordered table-zend'>";
+            echo "<thead>";
+                echo "<tr>";
+                    echo "<th width='15%' class='align-middle text-center' width='30%'>Name</th>";
+                    echo "<th width='10%' class='align-middle text-center' width='30%'>Email</th>";
+                    echo "<th class='align-middle text-center' width='20%'>Mobile</th>";
+                    echo "<th class='align-middle text-center' width='10%'>Status</th>";
+                    echo "<th width='10%' class='align-middle text-center'></th>";
+                echo "</tr>";
+            echo "</thead>";
+            echo "<tbody>";
+                foreach ( Capsule::table('tbladmins')->get() as $administrator ):
+                $info = Capsule::table('mod_zend_admininfo')->where("admin_id", $administrator->id)->first();
+                echo "<tr>";
+                    echo "<td class='text-center'>".$administrator->firstname." ".$administrator->lastname."</td>";
+                    echo "<td class='text-center'>".$administrator->email."</td>";
+                    echo "<td class='text-center'>";
+                    echo "<input id='phone-".$administrator->id."' class='form-control' value='".$info->mobile."' />";
+                    echo "</td>";
+                    echo "<td class='text-center'>";
+                        if ( $info->is_active ):
+                        echo "<input id='is-active-".$administrator->id."' type='checkbox' class='form-check-input' checked />";
+                        else:
+                        echo "<input id='is-active-".$administrator->id."' type='checkbox' class='form-check-input' />";
+                        endif;
+                    echo "</td>";
+                    echo "<td class='text-center'><button class='btn btn-success btn-sm' onclick='administrator.update(".$administrator->id.")'>Save</button></td>";
+                echo "</tr>";
+                endforeach;
+            echo "</tbody>";
+        echo "</table>";
+    }
+
+    public function ajax_administrator_update() {
+        header('Content-Type: application/json');
+        if ( Capsule::table('mod_zend_admininfo')->where("admin_id", $_POST["id"])->first() ):
+            try {
+                Capsule::table('mod_zend_admininfo')->where("admin_id", $_POST["id"])->update([
+                    "mobile"    => $_POST['phone'],
+                    "is_active" => ($_POST['is_active'] == 'true') ? true : false
+                ]);
+                echo json_encode(["status" => "success"]);
+            } catch (\Exception $e) {
+                echo json_encode(["status" => "failed"]);
+            }
+        else:
+            try {
+                Capsule::table('mod_zend_admininfo')->insert([
+                    "admin_id"  => $_POST['id'],
+                    "mobile"    => $_POST['phone'],
+                    "is_active" => ($_POST['is_active'] == 'true') ? true : false
+                ]);
+                echo json_encode(["status" => "success"]);
+            } catch (\Exception $e) {
+                echo json_encode(["status" => "failed"]);
+            }
+        endif;
+        exit();
+    }
 
     /**
      * This partials method is responsible for injecting relevent
@@ -100,7 +165,10 @@ class Dashboard {
                 echo "<a href='addonmodules.php?module=zend&tab=overview'><button class='btn btn-primary'>Overview</button></a>";
             echo "</li>";
             echo "<li>";
-                echo "<a href='addonmodules.php?module=zend&tab=templates'><button class='btn btn-primary'>Templates</button></a>";    
+                echo "<a href='addonmodules.php?module=zend&tab=templates'><button class='btn btn-primary'>Templates</button></a>";
+            echo "</li>";
+            echo "<li>";
+                echo "<a href='addonmodules.php?module=zend&tab=administrators'><button class='btn btn-primary'>Administrators</button></a>";
             echo "</li>";
         echo "</ul>";
     }
