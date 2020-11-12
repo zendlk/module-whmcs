@@ -8,7 +8,7 @@ use Zend\Support\Config as Zend_Config;
  * This hook is responsible for sending out notifications
  * to both administrators and user who initiate the request
  *
- * Hook: TicketOpen
+ * Hook: TicketAdminReply
  * Target: Client, Administrators
  *
  */
