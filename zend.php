@@ -76,7 +76,7 @@ function zend_activate() {
 		Capsule::table('mod_zend_templates')->insert([
 			"hook"			=> "InvoiceCreated",
 			"type"			=> "client",
-			"parameters"	=> "{first_name}, {last_name}, {invoice_id}, {due_date}, {subtotal}",
+			"parameters"	=> "{first_name}, {last_name}, {invoice_id}, {due_date}, {subtotal}, {currency_code}, {currency_prefix}, {currency_suffix}",
 			"message"		=> "Hi {firstname}, You have new invoice generated with id #{invoice_id}. The last day of payment is {due_date}. Kindly pay your bill before due date to use services without interruption."
 		]);
 
