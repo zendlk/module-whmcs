@@ -11,7 +11,53 @@ class Dashboard {
      */
     function overview() {
         self::partials_tabs();
-        echo "Overview";
+
+        echo "<div class='col'>";
+            echo "<div class='row'>";
+                echo "<div class='col-sm-4'>";
+                    echo "<div class='health-status-block status-badge-green clearfix'>";
+                        echo "<div class='icon'><i class='fa fa-credit-card'></i></div>";
+                        echo "<div class='detail'>";
+                            echo "<span class='count'>0</span>";
+                            echo "<span class='desc'>Account balance</span>";
+                        echo "</div>";
+                    echo "</div>";
+                echo "</div>";
+                echo "<div class='col-sm-4'>";
+                    echo "<div class='health-status-block status-badge-orange clearfix'>";
+                        echo "<div class='icon'><i class='fa fa-comment'></i></div>";
+                        echo "<div class='detail'>";
+                            echo "<span class='count'>0</span>";
+                            echo "<span class='desc'>Messages (month)</span>";
+                        echo "</div>";
+                    echo "</div>";
+                echo "</div>";
+                echo "<div class='col-sm-4'>";
+                    echo "<div class='health-status-block status-badge-cyan clearfix'>";
+                        echo "<div class='icon'><i class='fa fa-comment'></i></div>";
+                        echo "<div class='detail'>";
+                            echo "<span class='count'>0</span>";
+                            echo "<span class='desc'>Messages (week)</span>";
+                        echo "</div>";
+                    echo "</div>";
+                echo "</div>";
+            echo "</div>";
+            echo "<div class='row'>";
+                echo "<div class='col-sm-offset-3 col-sm-6' style='margin-top: 20px;'>";
+                    echo "<div class='panel panel-default'>";
+                        echo "<div class='panel-body'>";
+                            echo "<p>";
+                                echo "Please contact us using any of below mentioned contact channel if you face any issues with this module.";
+                                echo "<br><br>";
+                                echo "Mobile: +94 777 120 160";
+                                echo "<br>";
+                                echo "Email: support@zend.lk";
+                            echo "</p>";
+                        echo "</div>";
+                    echo "</div>";
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
     }
 
 
