@@ -20,7 +20,7 @@ class Dashboard {
      * This method is responsible for handling message template
      * configuration for the module.
      */
-    function templates() {
+    public function templates() {
         self::partials_tabs();
 
         echo "<table class='table table-bordered table-zend'>";
@@ -60,7 +60,7 @@ class Dashboard {
         echo "</table>";
     }
 
-    function ajax_template_edit() {
+    public function ajax_template_edit() {
         header('Content-Type: application/json');
         try {
             Capsule::table('mod_zend_templates')->where("id", $_POST['id'])->update([
