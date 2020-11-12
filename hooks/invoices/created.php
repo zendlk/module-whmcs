@@ -4,7 +4,7 @@ use WHMCS\Database\Capsule;
 use Zend\API\SMS\Message;
 use Zend\Support\Config as Zend_Config;
 
-add_hook('InvoiceCreated', 1, function($params) {
+add_hook("InvoiceCreated", 1, function($params) {
 
 	/**
 	 * Check if the addon have active notification
@@ -19,6 +19,7 @@ add_hook('InvoiceCreated', 1, function($params) {
 
 		$Invoice = Capsule::table("tblinvoices")->where("id", $params["invoiceid"])->first();
 		$Client = Capsule::table("tblclients")->where("id", $Invoice->userid)->first();
+		$Currency = Capsule::table("tblcurrencies")->find($Client->currency);
 
 		/**
 		 * We need to format the phone number of the client to the
@@ -37,7 +38,10 @@ add_hook('InvoiceCreated', 1, function($params) {
 				"{last_name}"		=> $Client->lastname,
 				"{invoice_id}"		=> $Invoice->id,
 				"{due_date}"		=> $Invoice->duedate,
-				"{subtotal}"		=> $Invoice->subtotal
+				"{subtotal}"		=> $Invoice->subtotal,
+				"{currency_code}"	=> $Currency->code,
+				"{currency_prefix}"	=> $Currency->prefix,
+				"{currency_suffix}"	=> $Currency->suffix
 			];
 			$Text = str_replace(array_keys($template_parts), $template_parts, $Template->message);
 
