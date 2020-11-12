@@ -1,5 +1,8 @@
 <?php
 
+include_once dirname(dirname(__FILE__))."/libs/zendlk/php-sdk/src/support/Config.php";
+include_once dirname(dirname(__FILE__))."/libs/zendlk/php-sdk/src/api/Account.php";
+
 use WHMCS\Database\Capsule;
 
 class Dashboard {
@@ -9,16 +12,25 @@ class Dashboard {
      * of the module to the administrator and reporting any anomolies
      * of the module to the relevent parties.
      */
-    function overview() {
+    public function overview() {
         self::partials_tabs();
 
+        /**
+         * Get account information from the Zend API to display
+         * on the overview components
+         */
+        $Account = \Zend\API\Account::get(\Zend\Support\Config::create([
+            "token"		=> Capsule::table('tbladdonmodules')->select('value')->where('module', 'zend')->where('setting', 'api_token')->first()->value,
+            "sender"	=> Capsule::table('tbladdonmodules')->select('value')->where('module', 'zend')->where('setting', 'sender_id')->first()->value
+        ]));
+        
         echo "<div class='col'>";
             echo "<div class='row'>";
                 echo "<div class='col-sm-4'>";
                     echo "<div class='health-status-block status-badge-green clearfix'>";
                         echo "<div class='icon'><i class='fa fa-credit-card'></i></div>";
                         echo "<div class='detail'>";
-                            echo "<span class='count'>0</span>";
+                            echo "<span class='count'>".$Account["data"]["user"]["balance"]."</span>";
                             echo "<span class='desc'>Account balance</span>";
                         echo "</div>";
                     echo "</div>";
